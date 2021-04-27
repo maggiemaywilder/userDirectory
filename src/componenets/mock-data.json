@@ -1,0 +1,6 @@
+[
+    {"id":1, "first": "Jenny", "last": "Hart", "phone": "867-5309", "email": "jenny@email.com", "dob": 7},
+    {"id":1, "first": "Fredricka", "last": "Crocodilia", "phone": "747-7551", "email": "george@email.com", "dob": 42},
+    {"id":1, "first": "Ted", "last": "Wilder", "phone": "442-5408", "email": "ted@email.com", "dob": 57}
+]
+

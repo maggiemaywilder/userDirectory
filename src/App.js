@@ -5,6 +5,7 @@ import Table from './componenets/Table';
 import Searchbar from './componenets/Searchbar';
 import API from './utils/API';
 
+
 const App = () => {
 
 
@@ -19,7 +20,7 @@ const App = () => {
         
         <Header />
         <Searchbar />
-        {/* <Table /> */}
+        <Table />
       </div>
 
   );
