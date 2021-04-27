@@ -13,9 +13,11 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
+  background-color: #306add;
+  border-bottom: 5px solid #180779;
+  margin-bottom: 15px;
+  min-height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
