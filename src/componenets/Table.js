@@ -1,51 +1,35 @@
-import { useMemo } from 'react';
-import { useTable } from 'react-table';
-import { COLUMNS } from './columns';
-import mock_data from './mock-data.json';
+import React, { Component } from 'react';
+import API from '../utils/API';
 
-// need import react and useMemo
-// need style sheet?
+var employeeList;
+
+class Table extends Component {
+    state = {
+        data: []
+    }
 
 
-const Table = () => {
+    
 
-    const columns = useMemo(() => COLUMNS, [])
-    const data = useMemo(() => mock_data, [])
-  
-    const tableInstance = useTable({
-      columns,
-      data
-    }) 
-  
-    const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance 
-  
-      return (
-          <table {...getTableProps()}>
-            <thead>
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-                  ))
-                  }
-              </tr>
-              ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-              {rows.map(row => {
-                  prepareRow(row)
-                  return (
-                    <tr {...row.getRowProps()}>
-                      {row.cells.map((cell) => {
-                          return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                        })}
-                    </tr>
-                  )
-                })}
-            </tbody>
-          </table>
-      )
-  }
+    componentDidMount() {
+        this.fetchEmployees();
+    }
 
-  export default Table;
-  
+    fetchEmployees = async () => {
+        let data = await API.getEmployees();
+        employeeList = data.data.results;
+        console.log('line 20', employeeList);
+        this.setState(employeeList);
+    };
+
+
+    render() {
+        return (
+            <div>
+                <h1>Hello something and thanks for all the fish</h1>
+            </div>
+        )
+    }
+}
+
+export default Table
