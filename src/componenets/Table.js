@@ -26,7 +26,7 @@ const Table = () => {
     return (
 
         <div>
-            <h1>Hello World and thanks for all the fish</h1>
+            {/* <h1>Hello World and thanks for all the fish</h1> */}
 
             <table className="table table-striped">
                 <thead className="thead-dark" >
@@ -45,7 +45,7 @@ const Table = () => {
                                 <td>
                                     <img src={employee.picture.thumbnail} className="img-thumbnail" alt="employee"></img>
                                 </td>
-                            <td>`${employee.name.first} ${employee.name.last}`</td>
+                            <td>{employee.name.first} {employee.name.last}</td>
                             <td>{employee.phone}</td>
                             <td>{employee.email}</td>
                             <td>{employee.dob.date}</td>
