@@ -22,22 +22,6 @@ const Table = () => {
         console.log(employees)
     }, [employees])
 
-    // renderTableData((employees) => {
-    //     return this.state.employees.map((employee, index) => {
-    //        const { picture: { thumbnail: image }, name: { first: first_name, last: last_name }, dob: { date: birthday }, email, phone } = employee;
-    //        return (
-    //       <tr key={index}>
-    //           <td>{image}</td>
-    //           <td>`${first_name} ${last_name}`</td>
-    //           <td>{email}</td>
-    //           <td>{phone}</td>
-    //           <td>{birthday}</td>
-    //       </tr>
-
-    //        ) 
-    //     });
-    // });
-        // const { picture: { thumbnail: image }, name: { first: first_name, last: last_name }, dob: { date: birthday }, email, phone } = employee;
 
     return (
 
@@ -58,7 +42,9 @@ const Table = () => {
                     { employees.map(employee => {
                         return(
                             <tr key={employee.login.uuid}>
-                            <td>{employee.picture.thumbnail}</td>
+                                <td>
+                                    <img src={employee.picture.thumbnail} className="img-thumbnail" alt="employee"></img>
+                                </td>
                             <td>`${employee.name.first} ${employee.name.last}`</td>
                             <td>{employee.phone}</td>
                             <td>{employee.email}</td>
