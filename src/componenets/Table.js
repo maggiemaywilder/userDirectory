@@ -1,67 +1,75 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import API from '../utils/API';
 
 
-class Table extends Component {
+const Table = () => {
 
-    constructor(props) {
-        super(props);
-        this.state = [];
-    }
+    const [employees, setEmployees] = useState([])
 
-    componentDidMount() {
-        this.fetchEmployees();
+    useEffect(() => {
+        fetchEmployees();
+    }, []);
+
+
+    const fetchEmployees = async () => {
+        const response = await API.getEmployees();
+        console.log(response.data.results);
+        setEmployees(response.data.results);
+        console.log(employees);
     };
 
-    // componentWillUnmount() {
+    useEffect(() => {
+        console.log(employees)
+    }, [employees])
 
-    // }
+    // renderTableData((employees) => {
+    //     return this.state.employees.map((employee, index) => {
+    //        const { picture: { thumbnail: image }, name: { first: first_name, last: last_name }, dob: { date: birthday }, email, phone } = employee;
+    //        return (
+    //       <tr key={index}>
+    //           <td>{image}</td>
+    //           <td>`${first_name} ${last_name}`</td>
+    //           <td>{email}</td>
+    //           <td>{phone}</td>
+    //           <td>{birthday}</td>
+    //       </tr>
 
-    fetchEmployees() {
-        API.getEmployees()
-            .then(result => this.setState([result.data.results]))
-            .catch(err => console.log(err));
-    };
+    //        ) 
+    //     });
+    // });
+        // const { picture: { thumbnail: image }, name: { first: first_name, last: last_name }, dob: { date: birthday }, email, phone } = employee;
 
-    renderTableData() {
-        console.log(this.state[0]);
+    return (
 
-        // return this.state.map((each, index) => {
-        //     return (
-        //       <tr key={index}>
-        //           <td>{each.state.picture.thumbnail}</td>
-        //           <td>`${each.state.name.first} ${each.state.name.last}`</td>
-        //           <td>{each.state.dob}</td>
-        //           <td>{each.state.phone}</td>
-        //           <td>{each.state.email}</td>
-        //       </tr>
-        // )
-        // })
+        <div>
+            <h1>Hello World and thanks for all the fish</h1>
 
-    }
-
-    render() {
-        return (
-            <div>
-                <h1>Hello World and thanks for all the fish</h1>
-
-                <table className="table table-striped">
-                    <thead className="thead-dark" >
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Birthday</th>
+            <table className="table table-striped">
+                <thead className="thead-dark" >
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Birthday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { employees.map(employee => {
+                        return(
+                            <tr key={employee.login.uuid}>
+                            <td>{employee.picture.thumbnail}</td>
+                            <td>`${employee.name.first} ${employee.name.last}`</td>
+                            <td>{employee.phone}</td>
+                            <td>{employee.email}</td>
+                            <td>{employee.dob.date}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {this.renderTableData()}
-                    </tbody>
-                </table>
-            </div>
-        )
-    }
+                        )
+                    }) }
+                </tbody>
+            </table>
+        </div>
+    )
 }
 
 export default Table;
